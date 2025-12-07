@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dmitry Mironov — QA Advisor for Startups</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="QA director and startup advisor helping teams ship faster with higher quality and lower testing costs." />
+  <style>
+    :root {
+      --bg: #050509;
+      --fg: #f9fafb;
+      --muted: #9ca3af;
+      --border: #27272f;
+      --accent: #f9fafb;
+      --radius-lg: 14px;
+      --radius-sm: 8px;
+      --max-width: 1040px;
+      --card-bg: #0b0b12;
+      --card-soft-bg: #06060c;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #111827 0, #020617 42%, #000 100%);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max-width);
+      padding: 32px 20px 72px;
+    }
+
+    @media (min-width: 900px) {
+      .page {
+        padding: 40px 0 96px;
+      }
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: radial-gradient(circle at 30% 30%, #22c55e, #22c55e22);
+      box-shadow: 0 0 18px #22c55e70;
+    }
+
+    .nav-name {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--border);
+      background: #020617;
+      color: var(--fg);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr);
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .hero-heading {
+      font-size: clamp(38px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 24px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      font-size: 13px;
+      background: var(--card-soft-bg);
+      white-space: nowrap;
+      color: var(--muted);
+    }
+
+    .pill-soft {
+      border-style: dashed;
+      opacity: 0.9;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 15px;
+      border: 1px solid var(--accent);
+      background: #f9fafb;
+      color: #020617;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.6);
+    }
+
+    .btn span.arrow {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 260px;
+    }
+
+    .hero-side {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 20px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: var(--card-bg);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.88);
+    }
+
+    .hero-side-title {
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-side-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      gap: 16px;
+    }
+
+    .hero-side-label {
+      color: var(--muted);
+    }
+
+    .hero-side-value {
+      font-weight: 500;
+    }
+
+    .hero-side-divider {
+      border-top: 1px solid #111827;
+      margin: 8px 0;
+    }
+
+    .hero-side-footnote {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    section.section {
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading {
+      font-size: 22px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr);
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.clean li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      background: var(--card-soft-bg);
+      color: var(--muted);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55eaa;
+    }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .pricing-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .plan {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 18px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--card-soft-bg);
+    }
+
+    .plan-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .plan-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .plan-price {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .plan-desc {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .plan-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .plan-list li::before {
+      content: "– ";
+    }
+
+    .plan-foot {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .plan-highlight {
+  background: linear-gradient(135deg, #1a1a1f, #2a2a33);
+  border: 1px solid #c9a86a;
+  box-shadow:
+    0 0 22px rgba(201, 168, 106, 0.25),
+    0 0 12px rgba(201, 168, 106, 0.35) inset,
+    0 0 6px rgba(201, 168, 106, 0.55) inset;
+  transform: scale(1.045);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.plan-highlight:hover {
+  transform: scale(1.06);
+  border-color: #e9cfa2;
+  box-shadow:
+    0 0 28px rgba(233, 207, 162, 0.35),
+    0 0 16px rgba(233, 207, 162, 0.45) inset,
+    0 0 8px rgba(233, 207, 162, 0.7) inset;
+}
+
+.plan-highlight .plan-label {
+  color: #f3e7cf;
+}
+
+.plan-highlight .plan-name {
+  color: #fff4da;
+}
+
+.plan-highlight .plan-price {
+  color: #e8d7b9;
+}
+
+.plan-highlight .plan-list {
+  color: #f3e9d6;
+}
+
+.plan-highlight .plan-desc {
+  color: #f5e8ce;
+}
+
+.plan-highlight .plan-foot {
+  color: #e4d4bc;
+}
+.conference-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 900px) {
+      .conference-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .conf-card {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card-soft-bg);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .conf-image-wrapper {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .conf-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .conf-caption {
+      padding: 10px 10px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Two horizontal conference photos */
+    .conference-grid-2 {
+      display: grid;
+      gap: 22px;
+      margin-top: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .conference-grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .conf-card-h {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(228,212,188,0.22);
+      background: radial-gradient(circle at top, #15151d 0, #06060c 70%);
+      box-shadow: 0 0 12px rgba(0,0,0,0.45);
+    }
+    .conf-image-wrapper-h {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+    .conf-image-wrapper-h img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo {
+      width: 132px;
+      height: 132px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #ffffff44;
+      box-shadow:
+        0 0 18px rgba(15, 23, 42, 0.8),
+        0 0 10px rgba(201, 168, 106, 0.45);
+      margin-bottom: 20px;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .hero-photo {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 16px;
+      }
+    }
+
+    /* Background photos under about text */
+    .background-photos {
+      margin-top: 20px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .background-photos { grid-template-columns: 1fr 1fr; }
+    }
+    .bg-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(228,212,188,0.22);
+      background: radial-gradient(circle at top, #15151d 0, #06060c 70%);
+      box-shadow: 0 0 14px rgba(0,0,0,0.35);
+    }
+    .bg-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Expectation cards for founders */
+.expect-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 900px) {
+  .expect-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.expect-card {
+  border-radius: 14px;
+  border: 1px solid rgba(228, 212, 188, 0.26);
+  padding: 16px 16px 18px;
+  background: radial-gradient(circle at top, #15151f 0, #06060c 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.65);
+}
+
+.expect-card-header {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  color: #e4d4bc;
+}
+
+.expect-avatar {
+  margin: 16px auto 12px;
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #f5e8ce, #4b5563);
+  border: 1px solid rgba(228, 212, 188, 0.7);
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.75),
+    0 0 16px rgba(201, 168, 106, 0.45);
+}
+
+.expect-body p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 4px 0 10px;
+}
+
+.expect-body ul {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+  
+
+/* --- Premium overall accents overrides --- */
+body {
+  background: radial-gradient(circle at top, #181820 0, #050509 40%, #020208 100%);
+}
+
+.nav-name {
+  color: #e4d4bc;
+}
+
+.nav-links a {
+  letter-spacing: 0.06em;
+}
+
+.nav-links a:hover {
+  color: #f5e8ce;
+  border-color: #f5e8ce33;
+  box-shadow: 0 0 14px rgba(245, 232, 206, 0.18);
+}
+
+.section-heading {
+  color: #e4d4bc;
+  letter-spacing: 0.18em;
+}
+
+.section-title {
+  color: #f9fafb;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
+section.section {
+  border-top: 1px solid rgba(228, 212, 188, 0.22);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+.hero-side {
+  border-color: rgba(228, 212, 188, 0.45);
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.88),
+    0 0 24px rgba(201, 168, 106, 0.35);
+}
+
+.hero-side-title {
+  color: #e4d4bc;
+  letter-spacing: 0.2em;
+}
+
+.badge {
+  border-color: rgba(228, 212, 188, 0.35);
+}
+
+.hero-tags .pill {
+  border-color: rgba(228, 212, 188, 0.35);
+}
+
+.btn {
+  background: linear-gradient(135deg, #fdf7e9, #f5e0b8);
+  border-color: #c9a86a;
+  color: #1f2933;
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.65),
+    0 0 14px rgba(201, 168, 106, 0.6);
+}
+
+.btn:hover {
+  box-shadow:
+    0 14px 45px rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(233, 207, 162, 0.9);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #f5e8ce;
+  border-color: rgba(228, 212, 188, 0.55);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: rgba(24, 24, 32, 0.9);
+  box-shadow: 0 0 16px rgba(201, 168, 106, 0.45);
+}
+
+.conf-card {
+  border-color: rgba(228, 212, 188, 0.18);
+  background: radial-gradient(circle at top, #15151d 0, #06060c 70%);
+}
+
+.footer {
+  border-top-color: rgba(228, 212, 188, 0.28);
+  color: #a3a3b0;
+}
+
+.footer a:hover {
+  color: #f5e8ce;
+}
+
+  
+
+
+    /* Tighter layout for SVG icons inside premium circle */
+    .expect-avatar {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .expect-avatar img {
+      width: 58%;
+      height: 58%;
+      object-fit: contain;
+      display: block;
+    }
+
+
+  
+/* --- Premium Icon Circle Style (Variant B: Full Gold Coin) --- */
+.expect-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #fff9e8 0%, #d8c8a3 45%, #8c7b67 85%);
+  border: 1px solid #e4d4bc;
+  box-shadow:
+    0 0 14px rgba(201,168,106,0.55),
+    inset 0 2px 8px rgba(255,255,255,0.45),
+    inset 0 -3px 12px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.expect-avatar img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  opacity: 0.92;
+}
+
+
+    /* Management advice (Book) section premium styling */
+    #book {
+      border-top: 1px solid rgba(228, 212, 188, 0.26);
+    }
+
+    #book .section-grid {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    #book .section-title {
+      font-size: 24px;
+      max-width: 800px;
+      line-height: 1.4;
+    }
+
+    #book .tagline {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    #book .muted {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    #book .section-inner {
+      border-radius: 18px;
+      border: 1px solid rgba(228, 212, 188, 0.32);
+      padding: 24px 22px 26px;
+      background: radial-gradient(circle at top, #181821 0, #050509 70%);
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.92),
+        0 0 24px rgba(201, 168, 106, 0.35);
+    }
+
+    #book a {
+      color: #f5e0b8;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(245, 224, 184, 0.4);
+      padding-bottom: 1px;
+    }
+
+    #book a:hover {
+      border-bottom-color: rgba(245, 224, 184, 0.8);
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav-left">
+        <div class="nav-dot"></div>
+        <div class="nav-name">DMITRY MIRONOV</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#help">For startups</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#book">Book</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div>
+          <div class="hero-photo">
+            <img src="images/hero.jpg" alt="Dmitry Mironov" />
+          </div>
+          <h1 class="hero-heading">QA Consultant & startup advisor helping products ship faster with fewer bugs.</h1>
+          <p class="hero-sub">
+            I work with founders and product teams to build lean, effective QA systems: less chaos, fewer late surprises, more predictable releases.
+          </p>
+
+          <div class="hero-tags">
+            <span class="pill">15+ years in QA & delivery</span>
+            <span class="pill">Asia · Middle East · US· LATAM · EU markets</span>
+            <span class="pill pill-soft">Teams – up to 200 QA in one project</span>
+            <span class="pill pill-soft">Complex integrations & fintech</span>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="hero-side-title">Snapshot</div>
+          <div class="hero-side-row">
+            <span class="hero-side-label">Role</span>
+            <span class="hero-side-value">Head of QA Sector</span>
+          </div>
+          <div class="hero-side-row">
+            <span class="hero-side-label">Focus</span>
+            <span class="hero-side-value">Startups & scaleups</span>
+          </div>
+          <div class="hero-side-row">
+            <span class="hero-side-label">Typical team size</span>
+            <span class="hero-side-value">Up to 400 QA / dev</span>
+          </div>
+          <div class="hero-side-divider"></div>
+          <div class="hero-side-row">
+            <span class="hero-side-label">I help with</span>
+            <span class="hero-side-value">Speed · Cost · Risk</span>
+          </div>
+          <div class="hero-side-row">
+            <span class="hero-side-label">Location</span>
+            <span class="hero-side-value">Tokyo · Remote worldwide</span>
+          </div>
+          <p class="hero-side-footnote">
+            Ideal fit if you have a working product, increasing complexity and a sense that “QA is too slow and too expensive”.
+<br> <br><br> <br><br>
+
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn" href="https://calendly.com/dmitry-qaconsultancy/30min" target="_blank" rel="noreferrer">
+              Book 1:1 session
+              <span class="arrow">↗</span>
+            </a>
+            <a class="btn btn-outline" href="https://www.linkedi.../in/dmitriy-mironov-6a977548/" target="_blank" rel="noreferrer">
+              View LinkedIn
+            </a>
+            <div class="hero-note">1-hour video call, focused on your product, your constraints and your next release.</div>
+          </div>
+
+        </aside>
+
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-heading">Background</div>
+        <div class="section-title">Who I work with and what I’ve built before.</div>
+        <div class="section-grid">
+          <div>
+            <p class="tagline">
+              I’ve spent my career leading QA and delivery for complex products: billing, telecom, fintech and large-scale integrations.
+            </p>
+            <p class="muted">
+              I’ve led distributed teams of 200+ people across Japan, India, Europe and LATAM. I build QA and release processes
+              for companies where downtime and bad releases are expensive – and where “just test more” is not a strategy.
+            </p>
+
+            <div class="background-photos">
+              <div class="bg-photo">
+                <img src="images/conf-1.jpg" alt="Conference photo 1">
+              </div>
+              <div class="bg-photo">
+                <img src="images/conf-2.jpg" alt="Conference photo 2">
+              </div>
+            </div>
+
+          </div>
+          <div>
+            <ul class="clean">
+
+              <li> <br> I build QA practices that reduce delivery friction and make product releases more predictable. The emphasis is on clear ownership, tighter feedback loops, and removing unnecessary steps that slow down teams.</li>
+              <li>Most of my work involves products with complex integrations and cross-system impact. I help teams create visibility into these dependencies so issues surface earlier and require less rework.</li>
+              <li>In pre-production and integration testing stages, I focus on shortening cycle times by improving scenario relevance and eliminating low-value testing. The goal is to reach release readiness with fewer surprises and lower operational cost.</li>
+              <li>AI is applied where it removes manual bottlenecks — triage, log review, and repetitive scenario design. The result is faster analysis, more consistent quality decisions, and reduced load on senior engineers.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="section" id="help">
+        <div class="section-heading">For startups</div>
+        <div class="section-title">What founders can realistically expect when working with me.</div>
+
+        <div class="expect-grid">
+          <div class="expect-card">
+            <div class="expect-card-header">FASTER RELEASES</div>
+            <div class="expect-avatar"><img src="images/startups/faster.svg" alt=""></div>
+            <div class="expect-body">
+              <p>
+                We restructure how your team tests features so you cover what matters first instead of trying to test everything.
+              </p>
+              <ul class="clean">
+                <li>25–40% faster pre-production and integration testing.</li>
+                <li>Fewer last-minute blockers before release.</li>
+                <li>More predictable release cadence sprint to sprint.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="expect-card">
+            <div class="expect-card-header">RISK VISIBILITY</div>
+            <div class="expect-avatar"><img src="images/startups/risk.svg" alt=""></div>
+            <div class="expect-body">
+              <p>
+                Founders get a clear view of where instability comes from and which areas of the product drive most of the risk.
+              </p>
+              <ul class="clean">
+                <li>Simple risk map for critical flows and integrations.</li>
+                <li>Clear ownership for high-impact areas.</li>
+                <li>Fewer “fire drills” days before go-live.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="expect-card">
+            <div class="expect-card-header">LOWER QA COST</div>
+            <div class="expect-avatar"><img src="images/startups/cost.svg" alt=""></div>
+            <div class="expect-body">
+              <p>
+                We remove low-value checks and duplicated work so QA hours are spent where they actually change outcomes.
+              </p>
+              <ul class="clean">
+                <li>15–25% reduction in QA effort on a typical release.</li>
+                <li>Cleaner, easier-to-maintain test suites.</li>
+                <li>Processes that scale without constant firefighting.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="expect-card">
+            <div class="expect-card-header">ENTERPRISE EXPERIENCE</div>
+            <div class="expect-avatar"><img src="images/startups/enterprise.svg" alt=""></div>
+            <div class="expect-body">
+              <p>
+                I bring experience from environments with 200–400 QA / devs and apply it pragmatically to fast-moving teams.
+              </p>
+              <ul class="clean">
+                <li>Early identification of systemic issues before they grow.</li>
+                <li>Patterns that work in complex multi-vendor setups.</li>
+                <li>Enterprise-level thinking adapted to startup speed.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="section-heading">Pricing</div>
+        <div class="section-title">Advisory formats that match your stage.</div>
+
+        <div class="pricing-row">
+          <div class="plan">
+            <div class="plan-label">For specific problems</div>
+            <div class="plan-name">Startup Quick Fix</div>
+            <div class="plan-price">170 USD</div>
+            <p class="plan-desc">
+              A focused session to solve one concrete QA or release problem.
+            </p>
+            <ul class="plan-list">
+              <li>30-minute video call</li>
+              <li>One process, incident or bottleneck</li>
+              <li>Clear diagnosis and action plan</li>
+            </ul>
+            <div class="plan-foot">Good if you “just need to untangle this one thing”.</div>
+          </div>
+
+          <div class="plan plan-highlight">
+            <div class="plan-label">Most popular</div>
+            <div class="plan-name">Deep Dive</div>
+            <div class="plan-price">300 USD</div>
+            <p class="plan-desc">
+              A full hour dedicated to your product, team and release pipeline.
+            </p>
+            <ul class="plan-list">
+              <li>60-minute video call</li>
+              <li>Review of product, QA flow and constraints</li>
+              <li>Written summary with 7–14 day action plan</li>
+            </ul>
+            <div class="plan-foot">Designed for founders / leads who want clarity and direction.</div>
+          </div>
+
+          <div class="plan">
+            <div class="plan-label">For serious change</div>
+            <div class="plan-name">Founders Pack</div>
+            <div class="plan-price">1500 USD</div>
+            <p class="plan-desc">
+              A day of structured work together on your QA and releases.
+            </p>
+            <ul class="plan-list">
+              <li>8 × 60-minute sessions</li>
+              <li>Full QA / process audit</li>
+              <li>Risk matrix and prioritised roadmap</li>
+              <li>Chat support between sessions</li>
+            </ul>
+            <div class="plan-foot">For teams ready to redesign how they ship.</div>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:18px;">
+          For larger, ongoing engagements with your team (workshops, process redesign, embedded advisory), rates start from 2,000 USD. Contact me on linkedin to discuss scope.
+        </p>
+      </section>
+
+      <section class="section" id="book-call">
+        <div class="section-heading">Next step</div>
+        <div class="section-title">Book a 1-hour consulting call.</div>
+        <p class="tagline">
+          You bring your product, your constraints and your questions. I bring 15+ years of QA and delivery experience, including
+          complex enterprise projects and AI initiatives.
+        </p>
+        <p class="muted">
+          After the call, you will have a clear picture of your quality risks, a concrete list of next steps,
+          and a realistic sense of what to change in the next 2–4 weeks.
+        </p>
+        <a class="btn" href="https://calendly.com/dmitry-qaconsultancy/30min" target="_blank" rel="noreferrer">
+          Open Calendly
+          <span class="arrow">↗</span>
+        </a>
+      </section>
+    </main>
+
+
+      <section class="section" id="book">
+        <div class="section-heading">Management advice</div>
+        <div class="section-title">I also support founders and teams through management workshops grounded in real practice.</div>
+        <div class="section-inner">
+          <div class="section-grid">
+            <div>
+              <p class="tagline">
+                My management experience is featured in a book <a href="https://batyrev.com/books/slozhnye-podchinennye-novye-vyzovy">Difficult Subordinates, New Challenges (2025)</a> by <a href="https://batyrev.com/">Maxim Batyrev</a> — one of the most influential Russian business authors and the creator of bestseller 45 Tattoos of a Manager series.
+                In this book, I contributed real cases from my career: how to work with difficult team members, how to diagnose behavioral issues, and how to turn corrective actions into long-term growth rather than conflict.
+                Collaborating with Maxim was a significant milestone for me, and it allowed me to distill practical management tools that teams can apply immediately — not abstract theories, but frameworks shaped by real high-pressure environments.
+              </p>
+              <p class="muted">
+                Beyond QA, I help teams build management maturity: clearer ownership, stronger discipline, better communication, and the ability to grow people instead of losing them.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <footer class="footer" id="contact">
+      <div>Currently based in Tokyo · Working with teams worldwide.</div>
+      <div class="footer-links">
+        <a href="dmitry.qaconsultancy@gmail.com">dmitry.qaconsultancy@gmail.com</a>
+        <span>·</span>
+        <a href="https://www.linkedin.com/in/dmitriy-mironov-6a977548/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <span>·</span>
+        <a href="https://calendly.com/dmitry-qaconsultancy/30min" target="_blank" rel="noreferrer">Calendly</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
